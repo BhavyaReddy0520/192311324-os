@@ -1,0 +1,30 @@
+//1)Currently a new process invoking the appropriate systemcall.get the process identifier of the
+//currently running process and its respective parent using systemcall.get the process identifier of the
+//currently running process and its respective parent using system calls and display the same using c
+//program.
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+int main()
+{
+pid_t pid=fork();
+if(pid<0)
+{
+perror("fork failed.\n");
+exit(EXIT_FAILURE);
+}
+else if(pid==0)
+{
+printf("child process.\n");
+printf("child id:%d\n",getpid());
+printf("parentid:%d\n",getppid());
+}
+else
+{
+printf("parent process.\n");
+printf("parent id:%d\n",getpid());
+printf("child id:%d\n",pid);
+}
+return 0;
+}
